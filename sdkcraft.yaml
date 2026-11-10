@@ -1,4 +1,5 @@
 name: tombi
+title: Tombi
 version: "1.11.2"
 summary: TOML Formatter / Linter / Language Server
 description: |
@@ -6,6 +7,10 @@ description: |
   formatting, linting, and language server capabilities. tombi is installed as
   a standalone binary and placed on the PATH in workshops.
 license: MIT
+contact: https://github.com/lengau/tombi-sdk/issues
+issues: https://github.com/lengau/tombi-sdk/issues
+source-code: https://github.com/lengau/tombi-sdk
+website: https://tombi-toml.github.io/tombi/
 platforms:
   ubuntu@22.04:amd64:
   ubuntu@24.04:amd64:
