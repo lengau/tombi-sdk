@@ -1,0 +1,4 @@
+name: test-tombi
+base: ${BASE}
+sdks:
+  - name: try-tombi

@@ -1,0 +1,14 @@
+summary: Launch workshop with tombi SDK
+
+prepare: |
+  envsubst '${BASE}' <workshop.yaml.in >workshop.yaml
+  workshop launch
+
+restore: |
+  workshop remove || true
+
+execute: |
+  workshop exec -- tombi --version
+
+debug: |
+  workshop tasks
