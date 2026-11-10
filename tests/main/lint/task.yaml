@@ -1,0 +1,38 @@
+summary: Lint valid and invalid TOML files with tombi SDK
+
+prepare: |
+  envsubst '${BASE}' <workshop.yaml.in >workshop.yaml
+  workshop launch
+
+restore: |
+  rm -f valid.toml invalid.toml
+  workshop remove || true
+
+execute: |
+  cat <<'EOF' >valid.toml
+  [package]
+  name = "test-pkg"
+  version = "1.0.0"
+  description = "A valid TOML document"
+
+  [dependencies]
+  serde = "1.0"
+  EOF
+
+  cat <<'EOF' >invalid.toml
+  [package
+  name = "broken-toml"
+  unclosed_array = [1, 2, 3
+  EOF
+
+  # Linting valid TOML succeeds
+  workshop exec -- tombi lint valid.toml
+
+  # Linting invalid TOML fails
+  if workshop exec -- tombi lint invalid.toml; then
+    echo "Expected tombi lint to fail on invalid.toml, but it succeeded"
+    exit 1
+  fi
+
+debug: |
+  workshop tasks
